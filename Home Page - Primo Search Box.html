@@ -1,0 +1,247 @@
+<!-- ***** Start of custom Primo Search Box ***** -->
+<section id="lib-search-container" role="search">
+<style type="text/css">/*--- basic style of article element ---*/
+#lib-search-form {
+	max-width: 600px;
+	margin: auto;
+	color: #212C65;
+	font-size: 14px;
+}
+
+/*--- Style the header ---*/
+#lib-search-head {
+	position: relative;
+}
+#lib-search-title { 
+	font-size: 1.5em;
+	font-family: 'Nunito', Arial, sans-serif;
+	margin: 10px 0px 5px 5px; 
+	padding: 0;
+	display: inline-block;
+}
+/* Style Advanced Search checkbox */
+#lib-search-Adv {
+	font-size: .75em;
+	display: block;
+	position: absolute;
+	bottom: .2em;
+	right: .5em;
+}
+
+/*--- Style the Search ribbon ---*/
+/* Style search box container */
+#lib-search-row {
+	background: white;
+	width: 99%;
+	border: 1px solid #8fb9d0;
+	float: left;
+	padding: 0px;
+	margin: 0px 1px 0px 1px;
+}
+
+/* Style the query box */
+#lib-query {
+	width: 303px; 
+	display: block;
+	float: left;
+}
+#lib-form-query {
+	border: none;
+	width: 100%;
+	height: 1.9em;
+	padding-left: 2px;
+}
+
+#lib-spacing {
+	width: 2px;
+	height: 1.9em;
+	display: block;
+	float: left;
+	background: #c0c0c0;
+}
+
+/* Style the drop-down box */
+#lib-scope {
+	width: 210px;
+	display: block;
+	float: left;
+}
+#lib-form-scope {
+	border: none;
+	width: 100%;
+	height: 1.9em;
+}
+
+/* Style the search button */
+#lib-button {
+	background: #C52033; 
+	width: 75px;
+	display: block;
+	float: right;
+	margin: 1px 1px 1px 0px;
+}
+#lib-form-button {
+	font-size: .9em; 
+	width: 100%;
+	height: 1.9em;
+	font-weight: bold; 
+	background: #C52033; 
+	color: #ffffff; 
+	border: none;
+}
+
+
+/*--- Style the descriptive text below search box ---*/
+#lib-search-description {
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 5px;
+}
+#lib-search-form .libscopedescription {
+	display: none;
+}
+#lib-search-form #defaultOpenLib {
+	display: block;
+}
+#lib-search-form p {
+	padding: 0 0 2px 0;
+	margin: 0;
+	-webkit-animation: fadeEffect 1s;
+	animation: fadeEffect 1s;
+}
+.adv-search-text {
+	font-size: .75em
+}
+
+
+/*--- Animations ---*/
+/* Fade in content */
+@-webkit-keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+/*--- Media queries ---*/
+@media only screen and (max-width: 800px) {
+	#lib-spacing { display: none; }
+	#lib-query { width: 99.7%; border-bottom: 1px solid #c0c0c0; }
+	#lib-scope { width: 75%; }
+	#lib-button { width: 24%; }
+	#lib-search-Adv { position: static; }
+}
+</style>
+<form action="https://alliance-ccc.primo.exlibrisgroup.com/discovery/search" enctype="application/x-www-form-urlencoded; charset=utf-8" id="lib-search-form" method="get" name="searchForm" onsubmit="searchPrimo()" target="_self">
+<div id="lib-search-head">
+<h1 id="lib-search-title">Catalog: Search for books, articles and more!</h1>
+<!-- Removing advanced checkbox
+<label id="lib-search-Adv"><input id="lib-search-Adv-chkbx" type="checkbox" />&nbsp;Advanced Search</label></div>
+-->
+
+<div id="lib-search-row"><!-- Customizable Parameters -->
+<input id="srcScopeEntry" name="search_scope" type="hidden" value="Everything" /> 
+<input name="vid" type="hidden" value="01ALLIANCE_CCC:CCC"> 
+<input type="hidden" name="lang" value="en">
+<!-- Fixed parameters --> 
+<input id="primoQuery" name="query" type="hidden" /> 
+<!-- Enable this if "Expand My Results" is enabled by default in Views Wizard --> 
+<!-- <input name="pcAvailabiltyMode" type="hidden" value="true" /> -->
+<!-- search query entry -->
+<div id="lib-query">
+<input id="lib-form-query" type="text" value="" />
+</div>
+
+<div id="lib-spacing">&nbsp;</div>
+<!-- test of drop down selector -->
+
+<div id="lib-scope">
+<select id="lib-form-scope" onchange="xChangeScope();">
+<option selected="selected" value="0">CCC + Summit + Articles</option>
+<option value="1">CCC + Summit</option>
+<option value="2">CCC Library</option>
+<option value="3">Course Reserves</option> 
+</select>
+<!-- The above select is visible to the user with nice display labels.
+    The below select contains the true Primo search scope values, and is hidden from user -->
+<select id="lib-form-scope-var" style="display: none;">
+<option selected="selected" value="0">Everything</option>
+<option value="1">CCC_Summit</option>
+<option value="2">MyInstitution</option>
+<option value="3">Reserves</option> 
+</select>
+</div>
+<!-- Search Button -->
+
+<div id="lib-button"><input alt="Search" id="lib-form-button" onclick="searchPrimo()" title="Search" type="button" value="Search" /></div>
+</div>
+
+<div id="lib-search-description">
+<div class="libscopedescription" id="defaultOpenLib">
+<p>Search for items in CCC Library, Summit Libraries, and most article databases.</p>
+</div>
+
+<div class="libscopedescription">
+<p>Search for items at CCC Library and Summit Libraries, which can be received in 2-5 days.</p>
+</div>
+
+<div class="libscopedescription">
+<p>Books, eBooks, videos, and other items at CCC Library.</p>
+</div>
+
+<div class="libscopedescription">
+<p>Course specific text books and materials that your instructor has put on reserve for your class.</p>
+</div>
+
+<p class="adv-search-text">Or perform an <a alt="Advanced Search Link" href="https://alliance-ccc.primo.exlibrisgroup.com/discovery/search?vid=01ALLIANCE_CCC:CCC&lang=en&mode=advanced" target="_blank">Advanced Search here</a>.</p>
+
+</div>
+<script type="text/javascript">
+// Function to change search type based off of Advanced checkbox
+document.getElementById("lib-search-Adv-chkbx").onclick = function() {
+    if (this.checked) {
+		document.getElementById('srcBasAdv').value= "advanced";
+    }
+    else {
+        document.getElementById('srcBasAdv').value= "Basic";
+    }
+};
+
+// Function to change descriptive text below search box when new scope is selected
+
+
+function xChangeScope(){
+	var drpdwn=document.getElementById('lib-form-scope');
+	var varpass=document.getElementById('lib-form-scope-var');
+    var scope=varpass.options[drpdwn.selectedIndex].text;
+    
+	var i, scopecontent, tablinks;
+	// Set form to current scope
+	document.getElementById('srcScopeEntry').value=scope;
+    // Syncs the two select statments so that they are locked on the same value
+	document.getElementById('lib-form-scope-var').value=drpdwn.value
+    // Set all content sections to hidden
+	scopecontent = document.getElementsByClassName("libscopedescription");
+	for (i = 0; i < scopecontent.length; i++) {
+		scopecontent[i].style.display = "none";
+	}
+	// Set current scope to 'block'
+	scopecontent[drpdwn.value].style.display = "block";
+	// Attempt to refresh login link so it fades in with the rest of the content....
+	document.getElementById('lib-signin-link').style.display = "none";
+	document.getElementById('lib-signin-link').style.display = "block";
+}
+
+// Primo search function
+function searchPrimo() {
+	document.getElementById("primoQuery").value = "any,contains," + document.getElementById("lib-form-query").value.replace(/[,]/g, " ");
+	document.forms["searchForm"].submit();
+}
+</script></div>
+</form>
+</section>
+<!-- ***** End of custom Primo Search Box ***** -->

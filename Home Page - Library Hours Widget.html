@@ -1,0 +1,81 @@
+<!-- ***** Start of Library Hours section ***** -->
+<section id="lib-hours-container">
+<style>
+#lib-hours-container {
+	width: 300px;
+	text-align: center;
+	display: inline-block;
+	color: #212c65;
+	line-height: 1.4;
+}
+#lib-hours-head {
+	padding: 0px;
+	margin: 0px 0px 5px 0px;
+}
+#lib-hours-cal-link {
+	font-size: .8em;
+}	
+
+</style>
+<h4 id="lib-hours-head">Today's Library Hours</h4>
+<div>
+    <i class="fa fa-clock-o fa-lg"></i>
+	<span id="lib-hours-today"></span>
+	<br>
+	<span id="lib-hours-cal-link">
+<!--        You can still <a href="http://libguides.clackamas.edu/ask" target="_blank">get help</a> from a librarian!
+	<br>
+-->
+	<a href="http://libguides.clackamas.edu/hours" target="_blank">Full Calendar</a></span>
+    <br>
+    <a href="https://libguides.clackamas.edu/ask" target="_blank">Get help online (24/7)</a>
+    <br>
+<!--    <a href="https://libguides.clackamas.edu/covid-19#s-lg-box-23325991" target="_blank">Book Pickup and Delivery</a>
+    <br>
+   	<span id="lib-hours-cal-link">Physical space: <a href="https://libguides.clackamas.edu/hours" target="_blank">Closed</a>
+ -->
+    
+</div>
+
+<script>
+// Get current weeks xml from on-campus cached site
+$.get("https://webportal1.clackamas.edu/AlmaHours/hours.xml").done(function(data){
+	//perform work on xml returned
+	// Pull month/day (not used at this time)
+//	var d = new Date();
+//	var datestring = (d.getMonth()+1) + "/" + d.getDate();
+
+	// supporting function to change ExL returned time fields as 'normalized' 12-hour time with no leading zeroes, and appended am/pm
+	function tConvert (time) {
+		// Check correct time format and split into components
+		time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+		if (time.length > 1) { // If time format correct
+			time = time.slice (1);  // Remove full string match value
+			time[5] = +time[0] < 12 ? 'am' : 'pm'; // Set AM/PM
+			time[0] = +time[0] % 12 || 12; // Adjust hours
+		}
+		return time.join (''); // return adjusted time or original string
+	}
+
+	// find anchor element for result
+	var list = $('#lib-hours-today');
+	// query xml data - .find 'day' and perform action on .each
+	var day = $(data).find('day').first();
+	// get values we want from each day
+	var hours = $(day).find('hour');  // find the 'hour' node
+	var day_of_week = $(day).find('day_of_week').attr('desc');  // find the plain text for each day - eg. "Wednesday"
+	var open = hours.length ? tConvert ($(hours).children("from").text()) : "Closed";  // if there is an hours node, set open to the 'from' time, otherwise, set to Closed
+	var close = hours.length ? ' - '+ tConvert ($(hours).children("to").text()) : "";  // if there is an hours node, set closed to 'to' time, otherwise set to ""
+
+// append html to the <ul> anchor
+	list
+		.append(open+close)
+	;
+})
+.fail(function(){
+	alert('something went wrong!');
+});
+</script>
+</section>
+<!-- ***** End of Library Hours section ***** -->

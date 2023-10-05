@@ -1,0 +1,482 @@
+<style>
+<link rel="stylesheet" type="text/css" href="//libapps.s3.amazonaws.com/sites/7775/include/alma_hours_widget.css">
+<script type="text/javascript" src="//libapps.s3.amazonaws.com/sites/7775/include/alma_hours_widget.js"></script>
+
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+html { font-size: 62.5% }
+
+#s-lg-public-skiplink {background: transparent;    border-right: transparent;
+    border-bottom: transparent}
+.s-lib-profile-container .label {
+	background-color: #212065;
+}
+.s-lg-text-ghost, .s-lib-text-ghost {
+    color: #636161;
+    font-weight: 400;
+}
+.label-success {
+	color: #862633;
+	background-color: #862633;
+	border: 0px solid;
+	box-shadow: none;
+	border-radius: 4px;
+	border-left: none;
+}
+.s-lib-profile-container .label:hover {
+	color: #862633;
+	background-color: #D3d0ce;
+	border: 0px solid;
+	box-shadow: none;
+	border-radius: 4px;
+	transition: all 0.25s ease 0s;
+}
+
+.label {
+	display: inline;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+	font-weight: 700;
+	line-height: 1;
+	color: #D3D0Ce;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border: 0px solid;
+	box-shadow: none;
+	border-radius: 4px;
+	transition: all 0.25s ease 0s;
+}
+
+.btn-info {
+	color: #fff;
+	background-color: #41748d;
+	border: 0px solid;
+	box-shadow: none;
+	border-radius: 4px;
+	transition: all 0.25s ease 0s;
+}
+.btn-info:hover {
+	color: #212c65;
+	background-color: #E2f1f4;
+	border: 0px solid;
+	box-shadow: none;
+	border-radius: 4px;
+	transition: all 0.25s ease 0s;
+}
+body {
+	font-size: 1.4em;
+	padding-bottom: 5em;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #212065;
+}
+/*--- Styling to change the main content pane ---*/
+#s-lg-guide-main .s-lib-box {
+	border-radius: 0;
+	border-bottom: 1px solid black;
+}
+#s-lg-guide-main .s-lib-box .s-lib-box-title {
+	font-size: 1.34em;
+	font-weight: normal;
+	padding: inherit;
+}
+/*--- target A-Z list ---*/
+#s-lg-az-results .s-lg-az-result-title {
+	font-size: 1.2em;
+}
+#col-vendors.col-md-3 {
+	padding-bottom: 15px;
+}
+#col-search.col-md-3 {
+	display: none;
+}
+/*--- Not sure why I did this... ---*/
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
+/* TEST CSS Document */
+
+/**************************** CCC LIBGUIDES CSS *****************************/
+/****************************** GENERAL LAYOUT ******************************/
+/*
+html {
+	background-color: #FFF;
+	position: relative;
+	min-height: 100%;
+}
+body{
+	padding:0;
+	margin-bottom: 60px;
+	background-color: #FFF;
+	line-height: 1.6;
+}
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	font-weight: 300;
+	color:#862633;
+}
+a:link,
+a:visited,
+a:active,
+a:focus {
+	color: #862633;
+	outline: none !important;
+    overflow-wrap: break-word;
+}
+a:hover {
+	border-bottom: 1px dotted #862633;
+}
+div a:hover,
+div a:focus,
+p a:hover,
+p a:focus,
+li a:hover,
+li a:focus,
+blockquote a:hover,
+blockquote a:focus,
+td a:hover,
+td a:focus {
+	color:#862633;
+	text-decoration:none;
+}
+
+a.s-lg-label-more:hover {
+	border-bottom: none;
+}*/
+/******************************** HEADER CSS ********************************/
+#ccc_header {
+	font-size: 14px;
+	font-family: 'Nunito', Arial, sans-serif;
+}
+#ccc_header ul {
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+#ccc_header li {
+	display:flex;
+	align-items:center;
+	padding:0 14px 0 14px;
+}
+#nav_ribbon {
+	background: #C52033;
+	height: 40px;
+	font-size: 15px;
+	line-height: 1.3333333333;
+	padding-right: 5px;
+}
+#nav-ribbon-links {
+	padding-right: 5px;
+}
+#nav-ribbon-links a {
+	color: #fff;
+	padding: 10px 0px 10px 0px;
+}
+#nav-ribbon-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#nav-ribbon-links li {
+	float: right;
+}
+#nav-ribbon-links .nav-ribbon-breadcrumb {
+	display: none;
+}
+#logo_link {
+	display:block;
+}
+#header_logo {
+	width:100%;
+}
+#brand-menu-links {
+	display: none;
+}
+#brand-menu-links a {
+	padding: 0;
+}
+/** ----- build the hamburger menu icon ----- **/
+#nav-ribbon-hamburger span {
+    position: relative;
+    display: inline-block;
+    width: 1.25em;
+    height: 0.8em;
+    margin-right: 0.3em;
+    border-top: 0.15em solid #fff;
+    border-bottom: 0.15em solid #fff;
+}
+#nav-ribbon-hamburger span:before {
+    content: "";
+    position: absolute;
+    top: 0.2em;
+    left: 0px;
+    width: 100%;
+    border-top: 0.15em solid #fff;
+}
+/** ----- hamburger menu functionality ----- **/
+#nav-ribbon-hamburger {
+    display: inline-block;
+}
+#nav-ribbon-hamburger div {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+	right: 26px;
+	top: 40px;
+}
+#nav-ribbon-hamburger div a {
+    color: #337ab7;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+#nav-ribbon-hamburger div a:hover { background-color: #f1f1f1 }
+
+#nav-ribbon-hamburger:hover { background-color: #862633 }
+
+#nav-ribbon-hamburger:hover div {
+    display: block;
+}
+
+
+/*
+#ccc_header .nav_items {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	width: 100%;
+	align-items: stretch;
+}
+#ccc_header ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+#ccc_header li {
+	display: flex;
+	padding: 14px;
+}
+#ccc_header li a {
+	color: #fff;
+}
+
+
+/**************************** NAVIGATION ELEMENTS ****************************/
+#s-lib-bc-group {
+       display: none;
+}
+#s-lib-bc-customer {
+	/*display: none;*/
+}
+.navbar {
+	margin-bottom:0px;
+	border-radius:0px;
+	min-height:inherit;
+}
+.navbar-nav {
+	margin:0px !important;
+}
+.navbar-collapse {
+	border:0px;
+	box-shadow:none;
+	padding:0px;
+}
+.navbar-toggle {
+	float:left;
+	margin-left:15px;
+	margin-right:0px;
+	border:0px;
+}
+.navbar-title {
+	color:#212c65;
+}
+.accentbar {
+	background-color:#fff;
+	border:0px;
+}
+.accentbar a:hover {
+	border-bottom: none;
+}
+.nav > li > a {
+	padding:10px 15px;
+}
+.navbar-header p {
+	float:left;
+	margin:0px;
+	padding-top:15px;
+	padding-left:5px;
+	text-transform:none;
+	color:#ffffff;
+	font-weight: 200;
+}
+
+
+/****************************** QuestionPoint Styling *********************/
+#questionpoint-subtext p {
+	margin: 0;
+	padding: 5px 0 0 0;
+	line-height: 1.2em
+}
+#qp_makeappointmen {
+	font-size: 1em;
+	font-weight: bold;
+}
+#qp_gethelp_link {
+	font-size: .9em;
+}
+
+/* Set height for the containers in the same row as the Qwidget above 
+#s-lg-col-1 .s-lib-box,
+#s-lg-col-2 .s-lib-box,
+#s-lg-col-3 .s-lib-box {
+	height: 22em;
+}
+
+
+/****************************** FAQ STYLING *******************************/
+.faq li {  }
+
+.faq li.q {
+  padding: 20px 0 10px 0;
+  font-weight: bold;
+  font-size: 1.4em;
+  border-bottom: 1px #ddd solid;
+  cursor: pointer;
+  color:#212c65;
+}
+
+.faq li.a {
+  list-style-type: none;
+  background: #efeff0;
+  font-size: 1.2em;
+  padding: 5px 5px 5px 10px;
+  display: none;
+  color:#212c65;
+}
+
+
+/****************************** EFA Homepage Styles *******************************/
+.efa_spacing {
+    position: relative; 
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.efa_lib_content {
+  position: relative;
+  text-align: center;
+}
+.efa-lib-contact {
+   text-align: left;
+   margin-left: 15%;
+}
+
+
+/****************************** MEDIA QUERIES *******************************/
+@media only screen and (min-width: 768px) {
+	.navbar-header p {
+		display:none;
+	}
+	.top .logo a,
+	.top .logo a img {
+		width:100%;
+	}
+	.breadcrumb {
+		display: block;
+	}
+	.navbar .container {
+		padding:0px;
+	}
+	#s-lib-public-header-title {
+		margin: 5px 0;
+		text-align: left;
+	}
+	.mainSearchForm {
+		width: auto;
+	}
+	.mainSearchFormButton {
+		display: inline;
+	}
+	#nav-ribbon-links #nav-ribbon-hamburger  {
+		display: none; 
+	}
+	#nav-ribbon-links .nav-ribbon-breadcrumb {
+		display: flex;
+	}
+	#nav-ribbon-links ul { 
+		float: right; 
+	}
+	#brand-menu-links {
+		display: block;
+	}
+
+}
+@media only screen and (min-width: 991px) {
+	#brand-menu-links a {
+		padding-top: 20px;
+	}
+}
+@media only screen and (min-width: 1200px) {
+	#brand-menu-links a { 
+		font-size: 18px; 
+		padding-top: 30px;
+	}
+}
+
+@media print {
+	.navbar, .breadcrumb {
+		display:none !important;
+	}
+	.top .logo a img {
+		width:30%;
+	}
+}
+</style>
+
+<script>
+function touchStart(event) {
+	var currentElement = event.target.className;
+	if (currentElement.match("nav-click")) {  }
+}
+document.addEventListener("touchstart", touchStart, false);
+
+// Accordian Action
+var action = 'click';
+var speed = "500";
+
+$(document).ready(function(){
+
+// Question handler
+  $('ul.faq > li.q').on(action, function(){
+
+    // gets next element
+    // opens .a of selected question
+    $(this).next().slideToggle(speed)
+    
+    // selects all other answers and slides up any open answer
+    .siblings('li.a').slideUp();
+  });
+});
+
+// Customization to remove the Subject Homepage sections from the Subject Guides area of course guides
+// Has to fire when the Guides by Subject section loads, since that content isn't loaded by default on the base URL
+$(document).on('DOMNodeInserted', function(e) {
+    var $targetElement = $(e.target);
+    if($targetElement.text().indexOf('Guides BY SUBJECT') > -1) {
+    $(".alert > div > strong:contains('Subject Homepage:')").parent().hide();
+    }
+});
+
+</script>
